@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.11.2'
 }
 
 group = 'org.example'
@@ -15,8 +16,16 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation("io.rest-assured:rest-assured:5.5.6")
     testImplementation("com.fasterxml.jackson.core:jackson-databind:2.20.0")
+    // Allure
+    testImplementation "io.qameta.allure:allure-rest-assured:2.29.0"
+    testImplementation "io.qameta.allure:allure-junit5:2.29.0"
 }
 
 test {
     useJUnitPlatform()
+    systemProperties(System.getProperties()) // Для передачи параметров в Allure
+}
+
+allure {
+    version = '2.29.0'
 }
